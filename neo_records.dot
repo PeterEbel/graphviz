@@ -1,0 +1,9 @@
+digraph structs {
+    node [label="Datensatz", shape=record];
+    rankdir=LR;
+    struct0 [label="<f0>Core|<f1>ODS"];
+    struct1 [label="<f0>Customers|<f1>Contracts"];
+    struct2 [label="<f0>customer_id |<f1>customer_name |<f2>surname"];
+    struct0:f0 -> struct1:f0;
+    struct0:f0 -> struct1:f1;
+}

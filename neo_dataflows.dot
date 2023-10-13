@@ -1,0 +1,190 @@
+digraph graph_name {
+      graph [
+          charset = "UTF-8",
+          //label = "NEO Dataflows",
+          labelloc = "t",
+          labeljust = "c",
+          colorscheme = "blues9",
+          bgcolor = "transparent",
+          fontpath = "/usr/local/share/fonts",
+          fontname = "Calibri",
+          fontcolor = 9,
+          fontsize = 64,
+          style = "filled",
+          rankdir = TB,
+          margin = 0.2,
+          splines = spline,
+          ranksep = 1.0,
+          nodesep = 0.9
+      ];
+
+      node [
+          shape = circle,
+          colorscheme = "blues9",
+          style = "filled",
+          fontname = "Calibri",
+          fontsize = 20,
+          fontcolor = white,
+          color = "white",
+          fillcolor = "4:9",
+          fixedsize = true,
+          gradientangle = 315,
+          height = 1.6,
+          width = 1.6
+      ];
+
+      edge [
+          colorscheme = "blues9",
+          arrowhead = normal,
+          style = solid,
+          fontname = "Calibri",
+          fontsize = 18,
+          fontcolor = 9,
+          color = 9,
+          labelfloat = false,
+          labeldistance = 25,
+          labelangle = 1,
+          labeljust = "c"
+      ];
+
+    //Node definitions
+    scb_bd [label = "SCB\nBig Data", colorscheme = "X11", fillcolor = "red:red4", height = 2.4, width = 2.4, fontsize = 28];
+    scb_cpl [label = "CPL", colorscheme = "X11", fillcolor = "red:red4"];
+    scb_dp [label = "Data\nProvider", colorscheme = "X11", fillcolor = "red:red4"];
+
+    subgraph cluster_scb_ingestion {
+        label = "\nSCB Ingestions";
+        labelloc = "t";
+        labeljust = "l";
+        fontsize = 28;
+        colorscheme = "X11";
+        fontcolor = "red2";
+        style = "rounded,dashed";
+        margin = 40;
+    
+        scb_as400b [label = "AS/400\nBanking", colorscheme = "X11", fillcolor = "red:red4"];
+        scb_as400l [label = "AS/400\nLeasing", colorscheme = "X11", fillcolor = "red:red4"];
+        scb_ptn_bdp [label = "Partenón\nBDP", colorscheme = "X11", fillcolor = "red:red4"];
+        scb_vu [label = "Verbundene\nUnternehmen", fontsize = 17, colorscheme = "X11", fillcolor = "red:red4"];
+        scb_cuco_db [label = "CuCo DB", colorscheme = "X11", fillcolor = "red:red4"];
+        ext_schufa [label = "Schufa", colorscheme = "purples9", fillcolor = "5:9"];
+    }
+
+    scb_cuco [label = "CuCo", colorscheme = "X11", fillcolor = "red:red4"];
+    scb_people [label = "People", colorscheme = "X11", fillcolor = "red:red4"];
+    scb_inspire [label = "SCB Inspire\nScaler", colorscheme = "X11", fillcolor = "red:red4"];
+    scb_sales30 [label = "SCB\nSales 3.0", colorscheme = "X11", fillcolor = "red:red4"];
+    scb_filenet [label = "SCB\nFilenet", colorscheme = "X11", fillcolor = "red:red4"];
+    scb_cmod [label = "CMOD", colorscheme = "X11", fillcolor = "red:red4"];
+    scb_rife [label = "RIFE", colorscheme = "X11", fillcolor = "red:red4"];
+
+    sf [label = "Salesforce", colorscheme = "purples9", fillcolor = "5:9", height = 2.4, width = 2.4, fontsize = 28];
+
+    subgraph cluster_neo_bd {
+        label = "\nNEO Big Data";
+        labelloc = "t";
+        labeljust = "l";
+        fontsize = 28;
+        colorscheme = "X11";
+        fontcolor = 7;
+        style = "rounded,dashed";
+        margin = 40;
+        
+        neo_bd_ndl [label = "NEO\nData Layer", height = 2, width = 2, fontsize = 24, colorscheme = "blues9", color = 9, fontcolor = 9, fillcolor = "2:6"];
+        neo_bd_ods [label = "ODS", colorscheme = "blues9", color = 9, fontcolor = 9, fillcolor = "2:6"];
+        neo_bd_pm [label = "Partner\nManager", colorscheme = "blues9", color = 9, fontcolor = 9, fillcolor = "2:6"];
+        neo_bd_cm [label = "Condition\nManager", colorscheme = "blues9", color = 9, fontcolor = 9, fillcolor = "2:6"];
+        neo_bd_bm [label = "Bonus\nManager", colorscheme = "blues9", color = 9, fontcolor = 9, fillcolor = "2:6"];
+        neo_bd_schufa [label = "Schufa\nScores", colorscheme = "blues9", color = 9, fontcolor = 9, fillcolor = "2:6"];
+        neo_bd_schwacke [label = "Eurotax\nSchwacke", colorscheme = "blues9", color = 9, fontcolor = 9, fillcolor = "2:6"];
+        neo_bd_db_logs [label = "Decision\nBox Logs", colorscheme = "blues9", color = 9, fontcolor = 9, fillcolor = "2:6"];
+        neo_bd_ods -> neo_bd_ndl;
+        neo_bd_pm -> neo_bd_ndl;
+        neo_bd_cm -> neo_bd_ndl;
+        neo_bd_bm -> neo_bd_ndl;
+        neo_bd_schufa -> neo_bd_ndl;
+    }
+
+    neo_pm [label = "Partner\nManager", colorscheme = "bugn9", fillcolor = "5:9"];
+    neo_cm [label = "Condition\nManager", colorscheme = "bugn9", fillcolor = "5:9"];
+    neo_bm [label = "Bonus\nManager", colorscheme = "bugn9", fillcolor = "5:9"];
+    neo_alfa_core [label = "NEO\nAlfa Core", height = 2.4, width = 2.4, fontsize = 28];
+    neo_alfa_ods [label = "NEO\nAlfa ODS"];
+    neo_alfa_payments_connector [label = "Alfa\nPayments"];
+    neo_ace [label = "Accounting\nCollection\nExtractor", fontsize = 17];
+    neo_vis [label = "VIS\nLoader"];
+    neo_db [label = "Decision\nBox"];
+
+    ptn_payments [label = "Partenón\nPayments", colorscheme = "X11", fillcolor = "red:red4"];
+    ptn_propileo [label = "Partenón\nPropileo", colorscheme = "X11", fillcolor = "red:red4"];
+
+    ext_printing_provider [label = "Printing\nProvider", colorscheme = "purples9", fillcolor = "5:9"];
+    ext_schwacke [label = "Eurotax\nSchwacke", colorscheme = "purples9", fillcolor = "5:9"];
+    ext_insurer [label = "Insurer", height = 2, width = 2, fontsize = 24, colorscheme = "purples9", fillcolor = "5:9"];
+
+
+    //Edge definitions
+    scb_as400b -> scb_bd;
+    scb_as400l -> scb_bd;
+    scb_ptn_bdp -> scb_bd;
+    scb_cuco_db -> scb_bd;
+    scb_vu -> scb_bd;
+    ext_schufa -> scb_bd;
+    ext_schwacke -> neo_bd_schwacke [label = "Vehicle\nConfigurations"];
+    neo_bd_schwacke -> neo_vis [label = "Vehicle\nConfigurations"];
+    neo_vis -> neo_alfa_core [label = "Vehicle\nConfigurations"];
+
+    sf -> neo_pm [label = "Onboarding\nDetails"];
+    sf -> neo_bm [label = "Bonus\nAgreements"];
+    sf -> neo_cm [label = "Condition Requests"];
+
+    neo_pm -> neo_alfa_core [label = "Partner\nMaster Data"];
+    neo_pm -> neo_cm [label = "Partner\nMaster Data"];
+    neo_pm -> neo_bm [label = "Partner\nMaster Data"];
+    neo_pm -> neo_bd_pm [label = "Partner\nMaster Data"];
+    neo_bd_pm -> sf [label = "Partner\nMaster Data"];
+    neo_bm -> neo_bd_bm [label = "Bonus\nAgreements"];
+    neo_bd_bm -> neo_bm [label = "Calculation\nResults"]
+    neo_bm -> sf [label = "Bonus\nReports"];
+    neo_cm -> neo_bd_cm [label = "Terms &\nConditions"];
+    neo_cm -> neo_alfa_core [label = "Terms &\nConditions"];
+
+    neo_db -> neo_bd_db_logs [label = "Decision\nBox Logs"];
+    neo_bd_db_logs -> scb_dp [label = "Decision\nBox Logs"];
+    neo_bd_ndl -> scb_dp [label = "EAEG\nReports"];
+
+    neo_alfa_core -> neo_alfa_payments_connector;
+    neo_alfa_core -> scb_inspire;
+    neo_alfa_core -> scb_cuco;
+    scb_cuco -> scb_cuco_db;
+    neo_alfa_core -> scb_people;
+    neo_alfa_core -> neo_alfa_ods [label = < <B>Core DB Sync</B> >, penwidth = 3, fontsize = 22];
+    neo_alfa_core -> scb_rife;
+    scb_rife -> ptn_propileo [label="Accounting\nInformation"];
+    scb_rife -> scb_bd [label="Insurance\nInformation"];
+    scb_inspire -> scb_filenet [label = "Servicing\nLetters"];
+    scb_inspire -> scb_cmod [label = "AFP"];
+    scb_inspire -> scb_sales30 [label = "PDF"];
+    scb_inspire -> ext_printing_provider [label = "AFP"];
+    ext_printing_provider -> scb_inspire[label = "Report"];
+
+    neo_alfa_payments_connector  -> ptn_payments [label = "Alfa\nPayments"];
+    ptn_payments  -> neo_alfa_payments_connector [label = "Rejections"];
+    neo_alfa_payments_connector -> neo_alfa_core [label = "Rejections"];
+
+    neo_alfa_ods -> neo_bd_ods [label = < <B>ODS Extract</B> >, penwidth = 3, fontsize = 22];
+    neo_bd_ods -> scb_bd [label = < <B>ODS Extract</B> >, penwidth = 3, fontsize = 22];
+    neo_bd_ods -> scb_dp [label = < <B>ODS Extract</B> >, penwidth = 3, fontsize = 22];
+    scb_bd -> scb_cpl [label = < <B>ODS Extract</B> >, penwidth = 3, fontsize = 22];
+    scb_bd -> scb_dp;
+    scb_bd -> scb_people;
+    scb_bd -> neo_bd_schufa [label = "Schufa Scores"];
+    scb_bd -> ext_insurer [label="Reports to\nInsurer"];
+
+    neo_alfa_ods -> neo_ace [label = "Accounting\nDetails"];
+    neo_ace -> Cumbre [label = "Accounting\nFiles"];
+    neo_ace -> Tallyman [label = "Customer\nContracts"];
+    neo_ace -> SFDK [label = "Customer\nContracts"];
+    neo_ace -> "Moodys\nABS" [label = "Daily\nTransactions"];
+    neo_ace -> "Moodys\nABS" [label = "Monthly\nPortfolio"];
+}
